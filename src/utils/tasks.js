@@ -76,5 +76,5 @@ export function exportTasks(tasks) {
   a.href = url;
   a.download = `opentask-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 }

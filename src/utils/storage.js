@@ -10,5 +10,9 @@ export function loadTasks() {
 }
 
 export function saveTasks(tasks) {
-  window.localStorage.setItem(storageKey, JSON.stringify(tasks));
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(tasks));
+  } catch {
+    return;
+  }
 }

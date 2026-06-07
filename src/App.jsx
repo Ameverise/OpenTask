@@ -16,29 +16,44 @@ const initialFilters = {
   sort: "dueDate"
 };
 
+function getInitialTheme() {
+  try {
+    const savedTheme = window.localStorage.getItem("theme");
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+  } catch {
+    return false;
+  }
+
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
+}
+
+function saveTheme(isDark) {
+  try {
+    window.localStorage.setItem("theme", isDark ? "dark" : "light");
+  } catch {
+    return;
+  }
+}
+
 function App() {
   const [tasks, setTasks] = useState(loadTasks);
   const [filters, setFilters] = useState(initialFilters);
   const [editingTask, setEditingTask] = useState(null);
   const [toast, setToast] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
-
-  const [isDark, setIsDark] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const [isDark, setIsDark] = useState(getInitialTheme);
 
   useEffect(() => { saveTasks(tasks); }, [tasks]);
 
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
+    saveTheme(isDark);
   }, [isDark]);
 
   const stats = useMemo(() => getTaskStats(tasks), [tasks]);
@@ -79,7 +94,7 @@ function App() {
         task.id === taskId
           ? {
               ...task,
-              subtasks: task.subtasks.map((s) =>
+              subtasks: (task.subtasks ?? []).map((s) =>
                 s.id === subtaskId ? { ...s, completed: !s.completed } : s
               )
             }
