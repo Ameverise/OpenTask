@@ -1,7 +1,7 @@
 # OpenTask
 
 [![Deploy](https://github.com/Ameverise/OpenTask/actions/workflows/deploy.yml/badge.svg)](https://github.com/Ameverise/OpenTask/actions/workflows/deploy.yml)
-[![Code Climate](https://img.shields.io/badge/Code%20Climate-настроить%20badge-lightgrey)](https://codeclimate.com/github/Ameverise/OpenTask)
+[![Maintainability](https://qlty.sh/badges/4a9cd119-f973-40a5-b9f7-7dd794f48886/maintainability.svg)](https://qlty.sh/gh/Ameverise/projects/OpenTask)
 
 OpenTask — учебное веб-приложение для управления задачами. Проект позволяет создавать задачи, редактировать их, отслеживать выполнение, работать с подзадачами и сохранять данные после перезагрузки страницы. Интерфейс поддерживает фильтрацию, поиск, сортировку, темную тему, экспорт задач и быстрый откат удаления через toast-уведомление.
 
@@ -62,9 +62,9 @@ npm run build
 npm run preview
 ```
 
-## Code Climate
+## Qlty
 
-В репозитории добавлен файл `.codeclimate.yml` для настройки анализа. Чтобы получить настоящий бейдж с оценкой A/B, нужно добавить репозиторий `Ameverise/OpenTask` в Code Climate и заменить временный бейдж в начале README на бейдж, который выдаст сервис.
+Проект подключен к Qlty. Бейдж Maintainability показывает текущую оценку качества кода по результатам анализа Qlty.
 
 ## Структура
 
