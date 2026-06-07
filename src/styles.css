@@ -3,7 +3,7 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --page: #f4f6f8;
   --surface: #ffffff;
   --surface-soft: #eef3f1;
@@ -19,6 +19,24 @@
   --danger-soft: #ffe7e7;
   --focus: #2f80ed;
   --shadow: 0 18px 45px rgba(21, 33, 45, 0.08);
+}
+
+/* Тёмная тема */
+:root.dark {
+  --page: #0f1217;
+  --surface: #1a1f26;
+  --surface-soft: #242a34;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --line: #334155;
+  --primary: #34d4c8;
+  --primary-dark: #1fb9af;
+  --primary-soft: #1e3a3a;
+  --warning: #fbbf24;
+  --warning-soft: #3f2e1e;
+  --danger: #f87171;
+  --danger-soft: #3f2727;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
 }
 
 body {
@@ -304,32 +322,59 @@ textarea {
 }
 
 .filter-row {
-  display: grid;
-  grid-template-columns: minmax(240px, 1fr) 180px 180px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
   gap: 10px;
 }
 
 .segmented-control {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   min-height: 44px;
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+  flex-shrink: 0;
 }
 
 .segmented-control button {
-  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 10px;
   border-radius: 6px;
   color: var(--muted);
   background: transparent;
+  border: 0;
   font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .segmented-control button.active {
   color: #fff;
   background: var(--primary);
+}
+
+.status-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status-count.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 .task-list {
@@ -506,4 +551,570 @@ textarea {
   .priority-badge {
     justify-self: start;
   }
+}
+
+/* ==================== ТЁМНАЯ ТЕМА ==================== */
+
+.dark {
+  --page: #0a0f17;
+  --surface: #11171f;
+  --surface-soft: #1a212d;
+  --ink: #e6edf5;
+  --muted: #94a3b8;
+  --line: #2a3749;
+  --primary: #22d3bb;
+  --primary-dark: #14b8a6;
+  --primary-soft: #1e3a3a;
+  --warning: #fbbf24;
+  --warning-soft: #3f2e1e;
+  --danger: #f87171;
+  --danger-soft: #3f2727;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Глобальные исправления для тёмной темы */
+.dark body {
+  background: var(--page);
+}
+
+.dark .app-header .eyebrow {
+  border-color: rgba(34, 211, 187, 0.2);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* Основные контейнеры */
+.dark .task-form,
+.dark .tasks-panel,
+.dark .stat-card,
+.dark .empty-state {
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+/* Поля ввода и селекты */
+.dark input,
+.dark select,
+.dark textarea,
+.dark .search-field {
+  background: var(--surface-soft);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+/* FilterBar */
+.dark .filter-bar {
+  background: var(--surface);
+  border-bottom-color: var(--line);
+}
+
+.dark .search-field {
+  background: var(--surface-soft);
+}
+
+.dark .search-field svg {
+  color: var(--muted);
+}
+
+/* Segmented Control */
+.dark .segmented-control {
+  background: var(--surface-soft);
+  border-color: var(--line);
+}
+
+.dark .segmented-control button {
+  color: var(--muted);
+}
+
+.dark .segmented-control button.active {
+  background: var(--primary);
+  color: #11171f;
+}
+
+/* Задачи */
+.dark .task-item {
+  background: var(--surface);
+  border-bottom-color: var(--line);
+}
+
+.dark .task-item:hover {
+  background: #1e2a32;
+}
+
+.dark .task-item.completed {
+  background: #1a2428;
+}
+
+/* Кнопки */
+.dark .icon-button {
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+.dark .icon-button:hover {
+  background: #334155;
+}
+
+.dark .primary-button {
+  background: var(--primary);
+  color: #0f172a;
+}
+
+.dark .primary-button:hover {
+  background: var(--primary-dark);
+}
+
+.dark .complete-button {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.dark .complete-button.done {
+  background: var(--primary);
+  color: #11171f;
+}
+
+/* Метки приоритетов */
+.dark .priority-badge.low   { background: #1e3a3a; color: #5eead4; }
+.dark .priority-badge.medium{ background: #3f2e1e; color: #fcd34d; }
+.dark .priority-badge.high  { background: #3f2727; color: #fca5a5; }
+
+/* Метки в task-meta */
+.dark .task-meta span {
+  background: #1e2937;
+  color: var(--muted);
+}
+
+/* Исправление кнопки "Очистить выполненные" */
+.clear-completed-btn {
+  white-space: nowrap;
+  padding: 0 16px;
+  font-size: 14px;
+  height: 44px;
+  min-width: 140px;           /* ← главное исправление */
+}
+
+.clear-completed-btn svg {
+  margin-right: 6px;
+}
+/* ==================== ПРОСРОЧЕННЫЕ ЗАДАЧИ ==================== */
+
+.task-item.overdue {
+  border-left: 3px solid var(--danger);
+}
+
+.overdue-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.task-meta span.overdue-date {
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* ==================== TOAST ==================== */
+
+.toast-wrapper {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, calc(100% - 32px));
+  z-index: 2000;
+  animation: toast-in 0.22s ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #17202a;
+  border-radius: 8px 8px 0 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.dark .toast {
+  background: #1e2937;
+  color: var(--ink);
+}
+
+.dark .toast-text span {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dark .toast-icon {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dark .toast-progress {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.toast-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-text strong {
+  display: block;
+  font-weight: 700;
+}
+
+.toast-text span {
+  display: block;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toast-undo {
+  border: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.toast-undo:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.toast-close {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.toast-progress {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.toast-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 999px;
+  animation: toast-progress 5s linear forwards;
+}
+
+@keyframes toast-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  width: min(340px, calc(100% - 32px));
+  padding: 28px 28px 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.modal-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--danger-soft);
+  color: var(--danger);
+  margin-bottom: 16px;
+}
+
+.modal-dialog h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.modal-dialog p {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-cancel {
+  flex: 1;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.modal-cancel:hover {
+  background: var(--surface-soft);
+}
+
+.modal-confirm {
+  flex: 1;
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--danger);
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.modal-confirm:hover {
+  background: #a33030;
+}
+
+.status-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.status-count.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* ==================== ПОДЗАДАЧИ ==================== */
+
+.subtasks-section {
+  display: grid;
+  gap: 8px;
+}
+
+.subtasks-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #263241;
+}
+
+.dark .subtasks-label {
+  color: var(--muted);
+}
+
+.subtask-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.subtask-input-row input {
+  flex: 1;
+}
+
+.subtask-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.subtask-item-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.subtask-remove {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+/* Подзадачи в карточке задачи */
+.subtasks-block {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.subtasks-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtasks-progress-bar {
+  flex: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.subtasks-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.subtasks-counter {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.subtask-list--view {
+  gap: 4px;
+}
+
+.subtask-view-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.subtask-view-item.done span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.subtask-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.subtask-view-item.done .subtask-check {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ==================== АНИМАЦИИ ЗАДАЧ ==================== */
+
+@keyframes task-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes task-exit {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+    max-height: 300px;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+    max-height: 0;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.task-animate-wrap {
+  overflow: hidden;
+}
+
+.task-entering {
+  animation: task-enter 0.25s ease forwards;
+}
+
+.task-removing {
+  animation: task-exit 0.28s ease forwards;
+  pointer-events: none;
+}
+
+.task-fade-in {
+  animation: fade-in 0.22s ease forwards;
 }
